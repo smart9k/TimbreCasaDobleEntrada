@@ -155,8 +155,8 @@ static inline void timbre_APP(void) {
 
 
     // 3) Update Variables
-    timbre_DI_SwitchDoor.Old     = timbre_DI_SwitchDoor.Now;
     timbre_DI_EnableIntercom.Old = timbre_DI_EnableIntercom.Now;
     timbre_DI_SwitchIntercom.Old = timbre_DI_SwitchIntercom.Now;
+    timbre_DI_SwitchDoor.Old     = timbre_DI_SwitchDoor.Now;
 }
 
