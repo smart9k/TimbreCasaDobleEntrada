@@ -137,9 +137,9 @@ void IOM_InputsTask_5ms(void) {
     SetB_iom_SwitchIntercom_raw( iom_ProcessDebounce( E_IOM__DI_SWITCH_INTERCOM ) );
 
     // 2) Process Data
-    SetB_iom_SwitchDoor(     GetB_iom_SwitchDoor_raw() );
-    SetB_iom_EnableIntercom( GetB_iom_EnableIntercom_raw() );
-    SetB_iom_SwitchIntercom( GetB_iom_SwitchIntercom_raw() );
+    SetB_iom_SwitchDoor(     !GetB_iom_SwitchDoor_raw() );      /* Negated Logic */
+    SetB_iom_EnableIntercom( !GetB_iom_EnableIntercom_raw() );  /* Negated Logic */
+    SetB_iom_SwitchIntercom( !GetB_iom_SwitchIntercom_raw() );  /* Negated Logic */
 }
 
 

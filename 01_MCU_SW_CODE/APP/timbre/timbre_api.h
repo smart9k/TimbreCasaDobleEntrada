@@ -18,7 +18,12 @@
 
 
     /* Enumerates / Structures ---------------------------------------------------*/
-
+        typedef struct {
+            T_bit Now;
+            T_bit Old;
+            T_bit Triggered;
+            T_u32 timer_ms;
+        } S_Timbre_DI_Status;
 
     /* Public functions ----------------------------------------------------------*/
 
@@ -29,8 +34,6 @@
 
         /* Periodic TIMBRE tasks */
         void TIMBRE_Task_5ms(void);
-        void TIMBRE_Task_10ms(void);
-        void TIMBRE_Task_100ms(void);
 
 #endif /* TIMBRE_API_H_ */
 
