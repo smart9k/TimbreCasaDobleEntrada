@@ -24,9 +24,9 @@
     /* Enumerates / Structures ---------------------------------------------------*/
 
         typedef enum {
-            E_IOM__DI_SWITCH_DOOR,
             E_IOM__DI_ENABLE_INTERCOM,
             E_IOM__DI_SWITCH_INTERCOM,
+            E_IOM__DI_SWITCH_DOOR,
             //
             E_IOM_TOTAL_DI_SIGNALS
         } E_IOM_DigitalInput;
@@ -34,8 +34,8 @@
         typedef enum {
             E_IOM__DO_PC13_LED,
             //
-            E_IOM__DO_RGB_R__DOOR_DETECTION,
             E_IOM__DO_RGB_G__INTERCOM_DETECTION,
+            E_IOM__DO_RGB_R__DOOR_DETECTION,
             E_IOM__DO_BUZZER,
             //
             E_IOM__DO_SW_TEST_01,
