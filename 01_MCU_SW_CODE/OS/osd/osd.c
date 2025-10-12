@@ -183,7 +183,7 @@ static inline void osd_PostInitState(void) {
 
 static inline void osd_NormalState(void) {
     //
-    IOM_SetOutput__DO_SW_TEST_01( TRUE );  // Only for SW Testing
+    /*IOM_SetOutput__DO_SW_TEST_01( TRUE );*/  // Only for SW Testing
 
     /* TASKS  @ 5 ms */
     ECUALM_TaskInputs_5ms();
@@ -240,7 +240,7 @@ static inline void osd_NormalState(void) {
     osd_NormalState_cnt_Tasks10ms  += OSD_TASK_TIME_BASE_ms;
     osd_NormalState_cnt_Tasks100ms += OSD_TASK_TIME_BASE_ms;
 
-    IOM_SetOutput__DO_SW_TEST_01( FALSE );  /* Only for SW Testing */
+    /*IOM_SetOutput__DO_SW_TEST_01( FALSE );*/  /* Only for SW Testing */
 }
 
 
