@@ -20,24 +20,20 @@
             T_bit B_processed;
         }T_dfaIO_DigitalSignalType;
 
-        typedef union {
-            struct {
-                // Digital Inputs
-                T_dfaIO_DigitalSignalType  EnableIntercom;
-                T_dfaIO_DigitalSignalType  SwitchIntercom;
-                T_dfaIO_DigitalSignalType  SwitchDoor;
-            };
+        typedef struct {
+            // Digital Inputs
+            T_dfaIO_DigitalSignalType  EnableIntercom;
+            T_dfaIO_DigitalSignalType  SwitchIntercom;
+            T_dfaIO_DigitalSignalType  SwitchDoor;
         }T_dfaIO_DigitalInputs;
 
 
         /* *** OUTPUTS *** */
-        typedef union {
-            struct {
-                // Digital Outputs
-                T_bit B_IntercomDetected;
-                T_bit B_DoorDetected;
-                T_bit B_Buzzer;
-            };
+        typedef struct {
+            // Digital Outputs
+            T_bit B_IntercomDetected;
+            T_bit B_DoorDetected;
+            T_bit B_Buzzer;
         }T_dfaIO_DigitalOutputs;
 
 

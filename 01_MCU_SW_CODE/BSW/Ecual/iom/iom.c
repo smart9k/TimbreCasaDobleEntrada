@@ -118,6 +118,8 @@ static inline void iom_OutputsInit(void) {
 
 
 void IOM_PostInit_Inputs(void) {
+    IOM_InputsTask_5ms();
+    //
     iom_PostInitInputs_ms += OSD_TASK_TIME_BASE_ms;
 }
 

@@ -118,11 +118,12 @@ static inline void timbre_APP(void) {
             SetB_iom_Buzzer( FALSE );
         }
         else {
-            SetB_iom_Buzzer( FALSE );
             timbre_DI_SwitchIntercom.Triggered = FALSE;
             timbre_DI_SwitchIntercom.timer_ms  = T_U32_MIN;
+            SetB_iom_Buzzer( FALSE );
         }
     } else {
+        timbre_DI_SwitchIntercom.timer_ms = T_U32_MIN;
         SetB_iom_IntercomDetected( FALSE );
     }
 
@@ -140,16 +141,18 @@ static inline void timbre_APP(void) {
                 SetB_iom_Buzzer( FALSE );
             }
             else {
-                SetB_iom_Buzzer( FALSE );
                 timbre_DI_SwitchDoor.Triggered = FALSE;
                 timbre_DI_SwitchDoor.timer_ms  = T_U32_MIN;
+                SetB_iom_Buzzer( FALSE );
             }
         }
         else {
+            timbre_DI_SwitchDoor.timer_ms = T_U32_MIN;
             SetB_iom_DoorDetected( FALSE );
         }
     }
     else {
+        timbre_DI_SwitchDoor.timer_ms = T_U32_MIN;
         SetB_iom_DoorDetected( FALSE );
     }
 
