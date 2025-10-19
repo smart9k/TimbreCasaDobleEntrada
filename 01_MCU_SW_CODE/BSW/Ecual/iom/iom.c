@@ -135,8 +135,8 @@ void IOM_InputsTask_5ms(void) {
     //
     // 1) Read data
     SetB_iom_EnableIntercom_raw( iom_ProcessDebounce( E_IOM__DI_ENABLE_INTERCOM ) );
-    SetB_iom_SwitchIntercom_raw( iom_ProcessDebounce( E_IOM__DI_SWITCH_INTERCOM ) );
-    SetB_iom_SwitchDoor_raw(     iom_ProcessDebounce( E_IOM__DI_SWITCH_DOOR ) );
+    SetB_iom_SwitchIntercom_raw( HAL_GPIO_ReadPin( IOM_PIN_INPUT_SWITCH_INTERCOM ) );  // Input is AC 50 Hz, so, no Debounce if >= 5 ms Task is used
+    SetB_iom_SwitchDoor_raw(     HAL_GPIO_ReadPin( IOM_PIN_INPUT_SWITCH_DOOR ) );      // Input is AC 50 Hz, so, no Debounce if >= 5 ms Task is used
 
     // 2) Process Data
     SetB_iom_EnableIntercom( !GetB_iom_EnableIntercom_raw() );  /* Negated Logic */
