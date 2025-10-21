@@ -6,11 +6,12 @@
 #define IOM_API_H
 
     #define IOM_MAJOR_VERSION       2
-    #define IOM_MINOR_VERSION       1
-    #define IOM_PATCH_VERSION       4
+    #define IOM_MINOR_VERSION       2
+    #define IOM_PATCH_VERSION       0
 
 
     /* Include's -----------------------------------------------------------------*/
+        #include "main.h"        // Needed for pinout names (from ioc file)
         #include "iom_cfg.h"
 
     /* Public Defines ------------------------------------------------------------*/
@@ -32,11 +33,9 @@
         } E_IOM_DigitalInput;
 
         typedef enum {
-            E_IOM__DO_PC13_LED,
-            //
-            E_IOM__DO_RGB_G__INTERCOM_DETECTION,
-            E_IOM__DO_RGB_R__DOOR_DETECTION,
             E_IOM__DO_BUZZER,
+            //
+            E_IOM__DO_PC13_LED,
             //
             E_IOM__DO_SW_TEST_01,
             E_IOM__DO_SW_TEST_02,
@@ -62,13 +61,18 @@
         /* Inputs functions */
 
         /* Outputs functions */
-        void IOM_SetOutput(E_IOM_DigitalOutput i_output, T_bit output_level);
+        #define IOM_ReadInput__DI_EnableIntercom()          ( HAL_GPIO_ReadPin( DI_ENABLE_INTERCOM_GPIO_Port, DI_ENABLE_INTERCOM_Pin ) )
+        #define IOM_ReadInput__DI_SwitchIntercom()          ( HAL_GPIO_ReadPin( DI_SWITCH_INTERCOM_GPIO_Port, DI_SWITCH_INTERCOM_Pin ) )
+        #define IOM_ReadInput__DI_SwitchDoor()              ( HAL_GPIO_ReadPin( DI_SWITCH_DOOR_GPIO_Port,     DI_SWITCH_DOOR_Pin ) )
+
+        /* Pinout Digital Outputs */
+        #define IOM_SetOutput__DO_BUZZER(out_value)         ( HAL_GPIO_WritePin( DO_BUZZER_GPIO_Port, DO_BUZZER_Pin, out_value ) )
         //
-        #define IOM_SetOutput__DO_PC13_LED(out_value)       ( HAL_GPIO_WritePin( IOM_PIN_OUTPUT_PC13_LED, out_value ) )
-        #define IOM_ToggleOutput__DO_PC13_LED()             ( HAL_GPIO_TogglePin( IOM_PIN_OUTPUT_PC13_LED ) )
+        #define IOM_SetOutput__DO_PC13_LED(out_value)       ( HAL_GPIO_WritePin(  DO_PC13_LED_GPIO_Port, DO_PC13_LED_Pin, out_value ) )
+        #define IOM_ToggleOutput__DO_PC13_LED()             ( HAL_GPIO_TogglePin( DO_PC13_LED_GPIO_Port, DO_PC13_LED_Pin ) )
         //
-        #define IOM_SetOutput__DO_SW_TEST_01(out_value)     ( HAL_GPIO_WritePin( IOM_PIN_OUTPUT_DO_SW_TEST_01, out_value ) )
-        #define IOM_SetOutput__DO_SW_TEST_02(out_value)     ( HAL_GPIO_WritePin( IOM_PIN_OUTPUT_DO_SW_TEST_02, out_value ) )
+        #define IOM_SetOutput__DO_SW_TEST_01(out_value)     ( HAL_GPIO_WritePin( DO_SW_TEST_01_GPIO_Port, DO_SW_TEST_01_Pin, out_value ) )
+        #define IOM_SetOutput__DO_SW_TEST_02(out_value)     ( HAL_GPIO_WritePin( DO_SW_TEST_02_GPIO_Port, DO_SW_TEST_02_Pin, out_value ) )
 
         /* Reporting tasks */
         void IOM_ReportInputReadings_RAW(void);

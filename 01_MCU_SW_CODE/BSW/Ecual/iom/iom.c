@@ -84,9 +84,9 @@ void IOM_DeInit(void) {
 static inline void iom_InputsInit(void) {
     //
     // 1) Read start-up values
-    iom_StartupValue[E_IOM__DI_ENABLE_INTERCOM] = HAL_GPIO_ReadPin( IOM_PIN_INPUT_ENABLE_INTERCOM );
-    iom_StartupValue[E_IOM__DI_SWITCH_INTERCOM] = HAL_GPIO_ReadPin( IOM_PIN_INPUT_SWITCH_INTERCOM );
-    iom_StartupValue[E_IOM__DI_SWITCH_DOOR]     = HAL_GPIO_ReadPin( IOM_PIN_INPUT_SWITCH_DOOR );
+    iom_StartupValue[E_IOM__DI_ENABLE_INTERCOM] = IOM_ReadInput__DI_EnableIntercom();
+    iom_StartupValue[E_IOM__DI_SWITCH_INTERCOM] = IOM_ReadInput__DI_SwitchIntercom();
+    iom_StartupValue[E_IOM__DI_SWITCH_DOOR]     = IOM_ReadInput__DI_SwitchDoor();
 
     // 2) Initialize values
     iom_PostInitInputs_ms = T_U32_MIN;
@@ -135,8 +135,8 @@ void IOM_InputsTask_5ms(void) {
     //
     // 1) Read data
     SetB_iom_EnableIntercom_raw( iom_ProcessDebounce( E_IOM__DI_ENABLE_INTERCOM ) );
-    SetB_iom_SwitchIntercom_raw( HAL_GPIO_ReadPin( IOM_PIN_INPUT_SWITCH_INTERCOM ) );  // Input is AC 50 Hz, so, no Debounce if >= 5 ms Task is used
-    SetB_iom_SwitchDoor_raw(     HAL_GPIO_ReadPin( IOM_PIN_INPUT_SWITCH_DOOR ) );      // Input is AC 50 Hz, so, no Debounce if >= 5 ms Task is used
+    SetB_iom_SwitchIntercom_raw( IOM_ReadInput__DI_SwitchIntercom() );  // Input is AC 50 Hz, so, no Debounce if >= 5 ms Task is used
+    SetB_iom_SwitchDoor_raw(     IOM_ReadInput__DI_SwitchDoor() );      // Input is AC 50 Hz, so, no Debounce if >= 5 ms Task is used
 
     // 2) Process Data
     SetB_iom_EnableIntercom(  GetB_iom_EnableIntercom_raw() );  /* Positive Logic */
@@ -163,11 +163,11 @@ static inline T_bit iom_ProcessDebounce(E_IOM_DigitalInput i_input) {
     if ( i_input < E_IOM_TOTAL_DI_SIGNALS ) {
         // 1.1) Information MUX
         if ( i_input == E_IOM__DI_ENABLE_INTERCOM ) {
-            iom_debounce_last[i_input] = (T_bit)HAL_GPIO_ReadPin( IOM_PIN_INPUT_ENABLE_INTERCOM );
+            iom_debounce_last[i_input] = IOM_ReadInput__DI_EnableIntercom();
         } else if ( i_input == E_IOM__DI_SWITCH_INTERCOM ) {
-            iom_debounce_last[i_input] = (T_bit)HAL_GPIO_ReadPin( IOM_PIN_INPUT_SWITCH_INTERCOM );
+            iom_debounce_last[i_input] = IOM_ReadInput__DI_SwitchIntercom();
         } else if ( i_input == E_IOM__DI_SWITCH_DOOR ) {
-                iom_debounce_last[i_input] = (T_bit)HAL_GPIO_ReadPin( IOM_PIN_INPUT_SWITCH_DOOR );
+                iom_debounce_last[i_input] = IOM_ReadInput__DI_SwitchDoor();
         } else {  /* Nothing */ }
 
         // 1.2) Do debouncing
@@ -189,5 +189,5 @@ static inline T_bit iom_ProcessDebounce(E_IOM_DigitalInput i_input) {
 
 /* ********************************* OUTPUTS ********************************* */
 static inline void iom_SetOutputs(void) {
-    HAL_GPIO_WritePin( IOM_PIN_OUTPUT_BUZZER,                    GetB_iom_Buzzer() );
+    IOM_SetOutput__DO_BUZZER( GetB_iom_Buzzer() );
 }
