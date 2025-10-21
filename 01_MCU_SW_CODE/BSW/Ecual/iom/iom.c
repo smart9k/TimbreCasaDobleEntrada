@@ -139,9 +139,9 @@ void IOM_InputsTask_5ms(void) {
     SetB_iom_SwitchDoor_raw(     HAL_GPIO_ReadPin( IOM_PIN_INPUT_SWITCH_DOOR ) );      // Input is AC 50 Hz, so, no Debounce if >= 5 ms Task is used
 
     // 2) Process Data
-    SetB_iom_EnableIntercom( !GetB_iom_EnableIntercom_raw() );  /* Negated Logic */
-    SetB_iom_SwitchIntercom( !GetB_iom_SwitchIntercom_raw() );  /* Negated Logic */
-    SetB_iom_SwitchDoor(     !GetB_iom_SwitchDoor_raw() );      /* Negated Logic */
+    SetB_iom_EnableIntercom(  GetB_iom_EnableIntercom_raw() );  /* Positive Logic */
+    SetB_iom_SwitchIntercom( !GetB_iom_SwitchIntercom_raw() );  /*  Negated Logic */
+    SetB_iom_SwitchDoor(     !GetB_iom_SwitchDoor_raw() );      /*  Negated Logic */
 }
 
 
@@ -189,7 +189,5 @@ static inline T_bit iom_ProcessDebounce(E_IOM_DigitalInput i_input) {
 
 /* ********************************* OUTPUTS ********************************* */
 static inline void iom_SetOutputs(void) {
-    HAL_GPIO_WritePin( IOM_PIN_OUTPUT_RGB_G__INTERCOM_DETECTED,  GetB_iom_IntercomDetected() );
-    HAL_GPIO_WritePin( IOM_PIN_OUTPUT_RGB_R__DOOR_DETECTED,      GetB_iom_DoorDetected() );
     HAL_GPIO_WritePin( IOM_PIN_OUTPUT_BUZZER,                    GetB_iom_Buzzer() );
 }

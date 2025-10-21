@@ -184,14 +184,14 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="APP"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="BSW"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="LIB"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="OS"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="LIB"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="APP"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="SGN"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="BSW"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="VER"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
