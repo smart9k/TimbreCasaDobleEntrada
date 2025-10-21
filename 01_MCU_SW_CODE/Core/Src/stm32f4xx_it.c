@@ -22,7 +22,10 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "osd_api.h"
+    #include "stdio.h"
+    #include "string.h"
+    //
+    #include "osd_api.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,7 +45,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
+    S_HardFault_Info HardFault_Info;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -85,7 +88,11 @@ void NMI_Handler(void)
 void HardFault_Handler(void)
 {
   /* USER CODE BEGIN HardFault_IRQn 0 */
-
+  __asm("TST lr, #4");
+  __asm("ITE EQ");
+  __asm("MRSEQ r0, MSP");
+  __asm("MRSNE r0, PSP");
+  __asm("B hard_fault_handler_c");
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
   {
@@ -200,5 +207,16 @@ void SysTick_Handler(void)
 /******************************************************************************/
 
 /* USER CODE BEGIN 1 */
-
+void hard_fault_handler_c(uint32_t *stack) {
+    HardFault_Info.r0  = stack[0u];
+    HardFault_Info.r1  = stack[1u];
+    HardFault_Info.r2  = stack[2u];
+    HardFault_Info.r3  = stack[3u];
+    HardFault_Info.r12 = stack[4u];
+    HardFault_Info.lr  = stack[5u];
+    HardFault_Info.pc  = stack[6u];
+    HardFault_Info.psr = stack[7u];
+    //
+    snprintf( HardFault_Info.hardFault_ProgramCounterValue, sizeof(HardFault_Info.hardFault_ProgramCounterValue), "HardFault at PC = 0x%08lx\n", HardFault_Info.pc );
+}
 /* USER CODE END 1 */
