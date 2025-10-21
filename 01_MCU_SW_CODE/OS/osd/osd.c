@@ -221,7 +221,7 @@ static inline void osd_NormalState(void) {
             osd_NormalState_cnt_Tasks100ms = T_U32_MIN;     // Restart 100 ms counter
             //
             //ECUALM_TaskInputs_100ms();
-            //SRVM_Task_100ms();
+            SRVM_Task_100ms();
             //APPM_Task_100ms();
             //ECUALM_TaskOutputs_100ms();
 

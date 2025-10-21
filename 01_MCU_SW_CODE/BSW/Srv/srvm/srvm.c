@@ -32,7 +32,7 @@ void SRVM_Init(void) {
 
 
 void SRVM_DeInit(void) {
-    //WDM_DeInit();
+    /* Nothing */
 }
 
 
@@ -44,7 +44,7 @@ void SRVM_PostInit(void) {
 
 /* ********************************* PERIODIC TASKS ********************************* */
 void SRVM_Task_100ms(void) {
-    //WDM_RefreshWatchdog();
+    WDM_Task_100ms();
 }
 
 

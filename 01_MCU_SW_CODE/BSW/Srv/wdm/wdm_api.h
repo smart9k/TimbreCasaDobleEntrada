@@ -26,6 +26,6 @@
         void WDM_DeInit(void);
 
         /* Other functions */
-        void WDM_RefreshWatchdog(void);
+        void WDM_Task_100ms(void);
 
 #endif /* WDM_API_H_ */
