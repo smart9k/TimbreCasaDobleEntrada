@@ -15,10 +15,10 @@
 
 
     /* System Frequencies */
-        #define mcalm_APB1_PCLK1_FREQ             (25000000u)
-        #define mcalm_APB2_PCLK2_FREQ             (25000000u)
-        #define mcalm_APB1_TIMER_FREQ             (25000000u)
-        #define mcalm_APB2_TIMER_FREQ             (25000000u)
+        #define mcalm_APB1_PCLK1_FREQ             (42000000u)
+        #define mcalm_APB2_PCLK2_FREQ             (42000000u)
+        #define mcalm_APB1_TIMER_FREQ             (42000000u)
+        #define mcalm_APB2_TIMER_FREQ             (42000000u)
 
     /* Timer Frequencies */
         #define mcalm_TIM1_FREQ                   (mcalm_APB2_TIMER_FREQ)
