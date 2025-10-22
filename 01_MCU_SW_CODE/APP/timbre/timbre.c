@@ -105,16 +105,16 @@ static inline void timbre_APP(void) {
         timbre_DI_SwitchIntercom.timer_ms += TIMBRE_PERIOD_TASK_5ms;
         SetB_iom_IntercomDetected( TRUE );
         //
-        if( timbre_DI_SwitchIntercom.timer_ms <= 25u ) {
+        if( timbre_DI_SwitchIntercom.timer_ms <= 20u ) {
             SetB_iom_Buzzer( TRUE );
         }
-        else if( timbre_DI_SwitchIntercom.timer_ms <= 2500u ) {
+        else if( timbre_DI_SwitchIntercom.timer_ms <= 2000u ) {
             SetB_iom_Buzzer( FALSE );
         }
-        else if( timbre_DI_SwitchIntercom.timer_ms <= 2525u ) {
+        else if( timbre_DI_SwitchIntercom.timer_ms <= 2020u ) {
             SetB_iom_Buzzer( TRUE );
         }
-        else if( timbre_DI_SwitchIntercom.timer_ms <= 5000u ) {
+        else if( timbre_DI_SwitchIntercom.timer_ms <= 4000u ) {
             SetB_iom_Buzzer( FALSE );
         }
         else {
@@ -134,7 +134,7 @@ static inline void timbre_APP(void) {
             timbre_DI_SwitchDoor.timer_ms += TIMBRE_PERIOD_TASK_5ms;
             SetB_iom_DoorDetected( TRUE );
             //
-            if( timbre_DI_SwitchDoor.timer_ms <= 25u ) {
+            if( timbre_DI_SwitchDoor.timer_ms <= 20u ) {
                 SetB_iom_Buzzer( TRUE );
             }
             else if( timbre_DI_SwitchDoor.timer_ms <= 2500u ) {

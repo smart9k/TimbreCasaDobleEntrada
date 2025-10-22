@@ -96,7 +96,7 @@ void HardFault_Handler(void)
   __asm("MRSNE r0, PSP");
   __asm("B hard_fault_handler_c");
   //
-  MCALM_ResetSW();
+  MCALM_ResetSW();  // Reset MCU to avoid MCU blocking
   /* USER CODE END HardFault_IRQn 0 */
   while (1)
   {
